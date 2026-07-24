@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://gbty41b4exik"]
+
+[node name="Node2D" type="Node2D" unique_id=700062113]
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=422254071]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HTTPRequest" type="HTTPRequest" parent="TextureButton" unique_id=586826342]
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="." unique_id=794009330]
+offset_right = 40.0
+offset_bottom = 40.0
