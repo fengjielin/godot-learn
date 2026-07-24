@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://4qhurw1ndgdm"]
 
 [ext_resource type="Texture2D" uid="uid://dxpjj733erw16" path="res://icon.svg" id="1_g6ejq"]
-[ext_resource type="Script" uid="uid://c35duydd8y8ai" path="res://Scripts/Sprite2d.cs" id="2_djkur"]
+[ext_resource type="Script" uid="uid://c35duydd8y8ai" path="res://Scripts/RotatingPlayer.cs" id="2_djkur"]
 
 [node name="Main" type="Node2D" unique_id=1791801721]
 
