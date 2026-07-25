@@ -20,6 +20,12 @@ public partial class RotatingPlayer : Sprite2D
   private float _minScale = 0.1f;
   private float _maxScale = 5.0f;
 
+  public override void _Ready()
+  {
+    var blinkingTimer = GetNode<Timer>("BlinkingTimer");
+    blinkingTimer.Timeout += OnTimerTimeout;
+  }
+
   /// <summary>
   /// _Process 每帧都会自动调用一次。
   /// delta 是上一帧到这一帧经过的时间（秒），用来让移动速度与帧率无关。
@@ -27,7 +33,7 @@ public partial class RotatingPlayer : Sprite2D
   public override void _Process(double delta)
   {
     // ---------- 左右方向输入：控制旋转 ----------
-    var direction = 0;  // 0 = 不转，-1 = 左转，1 = 右转
+    var direction = 1;  // 0 = 不转，-1 = 左转，1 = 右转
     if (Input.IsActionPressed("ui_left"))       // 按下 ← 键
     {
       direction = -1;   // 负值 = 逆时针旋转
@@ -87,6 +93,18 @@ public partial class RotatingPlayer : Sprite2D
         Mathf.Clamp(Scale.Y, _minScale, _maxScale)
       );
     }
+  }
+
+
+  // We also specified this function name in PascalCase in the editor's connection window.
+  private void OnButtonPressed()
+  {
+    GD.Print("按下按钮");
+    SetProcess(!IsProcessing());
+  }
+  private void OnTimerTimeout()
+  {
+    Visible = !Visible;
   }
 }
 

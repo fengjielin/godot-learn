@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dovfovc7ijf5u"]
+
+[ext_resource type="Texture2D" uid="uid://dxpjj733erw16" path="res://icon.svg" id="1_m05xl"]
+[ext_resource type="Script" uid="uid://c35duydd8y8ai" path="res://Scripts/RotatingPlayer.cs" id="2_fqig2"]
+
+[node name="RotatingPlayer" type="Sprite2D" unique_id=135170988]
+position = Vector2(330, 238)
+texture = ExtResource("1_m05xl")
+script = ExtResource("2_fqig2")
