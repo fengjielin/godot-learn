@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bcgsqd7333deu"]
+
+[ext_resource type="Script" uid="uid://c4ciouuedrv5p" path="res://Scripts/HUD.cs" id="1_i7jdr"]
+[ext_resource type="FontFile" uid="uid://rn6wdd75gt7c" path="res://fonts/Xolonium-Regular.ttf" id="2_uhl1w"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_j0k4b"]
+action = &"Jump"
+
+[sub_resource type="Shortcut" id="Shortcut_4mkmk"]
+events = [SubResource("InputEventAction_j0k4b")]
+
+[node name="HUD" type="CanvasLayer" unique_id=531643248]
+script = ExtResource("1_i7jdr")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1623199631]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.5
+offset_right = 22.5
+offset_bottom = 78.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_uhl1w")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="Message" type="Label" parent="." unique_id=40010486]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -312.5
+offset_top = -39.0
+offset_right = 312.5
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_uhl1w")
+theme_override_font_sizes/font_size = 64
+text = "Dodge the Creeps!"
+
+[node name="StartButton" type="Button" parent="." unique_id=2019176519]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -128.0
+offset_right = 100.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_uhl1w")
+theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_4mkmk")
+text = "Start"
+
+[node name="MessageTimer" type="Timer" parent="." unique_id=825735501]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="OnMessageTimerTimeout"]
