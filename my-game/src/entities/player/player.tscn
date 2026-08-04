@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cpd4an1sywyqp"]
+
+[ext_resource type="Script" uid="uid://d37dj2crx7ptc" path="res://src/entities/player/scripts/Player.cs" id="1_oih67"]
+[ext_resource type="Script" uid="uid://dy66btojmecdd" path="res://common/state_machine/NodeFiniteStateMachine.cs" id="2_eb65w"]
+[ext_resource type="Script" uid="uid://7nr3cyqjp2mr" path="res://src/entities/player/scripts/states/PlayerStateIdle.cs" id="3_4f0qm"]
+[ext_resource type="Script" uid="uid://uss5jcctbsda" path="res://src/entities/player/scripts/states/PlayerStateWalk.cs" id="4_tk761"]
+[ext_resource type="Script" uid="uid://bxia5dw5dlxac" path="res://src/entities/player/scripts/states/PlayerStateRun.cs" id="5_4f0qm"]
+[ext_resource type="Script" uid="uid://cre2f7qfinnlw" path="res://src/entities/player/scripts/states/PlayerStateJump.cs" id="5_n7e5a"]
+[ext_resource type="Script" uid="uid://crv4jvneo57g7" path="res://src/entities/player/scripts/states/PlayerStateAttack.cs" id="6_kc3pt"]
+[ext_resource type="Script" uid="uid://brolo6whd2i3v" path="res://src/entities/player/scripts/states/PlayerStateHurt.cs" id="7_3c4mh"]
+[ext_resource type="Texture2D" uid="uid://ckmacvvphj5xr" path="res://icon.svg" id="8_eb65w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mkmk"]
+size = Vector2(127, 128)
+
+[node name="Player" type="CharacterBody2D" unique_id=978900342]
+collision_mask = 2
+script = ExtResource("1_oih67")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1919690490 node_paths=PackedStringArray("InitialNodeState")]
+script = ExtResource("2_eb65w")
+InitialNodeState = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=747124546]
+script = ExtResource("3_4f0qm")
+
+[node name="Walk" type="Node" parent="StateMachine" unique_id=383086184]
+script = ExtResource("4_tk761")
+
+[node name="Run" type="Node" parent="StateMachine" unique_id=961838729]
+script = ExtResource("5_4f0qm")
+
+[node name="Jump" type="Node" parent="StateMachine" unique_id=1134974613]
+script = ExtResource("5_n7e5a")
+
+[node name="Attack" type="Node" parent="StateMachine" unique_id=1318646639]
+script = ExtResource("6_kc3pt")
+
+[node name="Hurt" type="Node" parent="StateMachine" unique_id=447485149]
+script = ExtResource("7_3c4mh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1745527662]
+texture = ExtResource("8_eb65w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1472485688]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_4mkmk")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=851068650]

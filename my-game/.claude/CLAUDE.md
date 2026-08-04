@@ -1,7 +1,5 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## 项目概述
 
 Godot 4.7 游戏项目，使用 C# (.NET) 脚本、Jolt Physics 物理引擎、Forward Plus 渲染器。
