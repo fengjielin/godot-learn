@@ -206,7 +206,7 @@ public static class StationCatalog
                 "给打击音效加 ±10% 随机音高，听是不是不腻了",
                 "加静音快捷键和「切到后台自动静音」",
             },
-            Implemented: false),
+            Implemented: true),
 
         new(
             Id: "s13_events",

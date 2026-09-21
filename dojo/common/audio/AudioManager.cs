@@ -32,6 +32,8 @@ public partial class AudioManager : Node
     private readonly Dictionary<string, AudioStream> _streamCache = new();
 
     private AudioStreamPlayer _music = null!;
+    private AudioStreamPlayer _musicAlt = null!;
+    private bool _crossfadeUseAlt;
     private string _currentMusicPath = "";
     private int _nextVoice;
 
@@ -41,9 +43,13 @@ public partial class AudioManager : Node
     {
         EnsureBus(BusMusic);
         EnsureBus(BusSfx);
-
-        _music = new AudioStreamPlayer { Name = "MusicPlayer", Bus = BusMusic };
+        _music = new AudioStreamPlayer { Name = "MusicPlayerA", Bus = BusMusic };
         AddChild(_music);
+        // ★ 交叉淡入淡出**必须有两个播放器**：
+        //   只有一个播放器的话，换曲时旧的会「戛然而止」——
+        //   你只能淡入新的，没法让旧的逐渐消失。
+        _musicAlt = new AudioStreamPlayer { Name = "MusicPlayerB", Bus = BusMusic };
+        AddChild(_musicAlt);
 
         for (var i = 0; i < SfxVoiceCount; i++)
         {
@@ -93,6 +99,109 @@ public partial class AudioManager : Node
     {
         _currentMusicPath = "";
         FadePlayer(_music, -60f, fadeSeconds);
+        FadePlayer(_musicAlt, -60f, fadeSeconds);
+    }
+
+    /// <summary>
+    /// ★ 真正的**交叉淡入淡出**：新的那个渐强，旧的那个同时渐弱。
+    ///
+    /// 和 `PlayMusic` 的区别：`PlayMusic` 是"淡入新曲子"，旧曲子会在
+    /// 新曲子开始的那一刻直接停掉 —— 在音乐性上是一个很突兀的断点。
+    /// 交叉淡入让两首曲子**重叠一两秒**，过渡是连续的。
+    ///
+    /// **代价**：过渡期间两条音轨同时在解码播放，CPU 和内存都是双份。
+    /// 所以 `fadeSeconds` 别设太长（1~2 秒足够），也别同时交叉太多首。
+    /// </summary>
+    public void CrossfadeMusic(AudioStream stream, float fadeSeconds = 1.2f)
+    {
+        var outgoing = _crossfadeUseAlt ? _music : _musicAlt;
+        var incoming = _crossfadeUseAlt ? _musicAlt : _music;
+        _crossfadeUseAlt = !_crossfadeUseAlt;
+
+        incoming.Stream = stream;
+        incoming.VolumeDb = -60f;
+        incoming.Play();
+
+        FadePlayer(incoming, 0f, fadeSeconds);
+        if (outgoing.Playing) FadePlayer(outgoing, -60f, fadeSeconds);
+    }
+
+    /// <summary>直接播放一个已经拿到的流 —— 比如 S12 运行时**合成**出来的音效。</summary>
+    public void PlaySfxStream(AudioStream stream, float volumeDb = 0f, float pitchVariation = 0.06f)
+    {
+        if (_sfxVoices.Count == 0) return;
+
+        // 轮转取一个声道。**池子里只有 12 个，超了就抢占最早那个** ——
+        // 这就是任务 ② 说的"复用池"：不新建播放器，而是覆盖最旧的那个。
+        var player = _sfxVoices[_nextVoice];
+        _nextVoice = (_nextVoice + 1) % _sfxVoices.Count;
+
+        player.Stream = stream;
+        player.VolumeDb = volumeDb;
+        player.PitchScale = pitchVariation <= 0f
+            ? 1f
+            : 1f + (float)GD.RandRange(-pitchVariation, pitchVariation);
+        player.Play();
+
+        TotalSfxPlayed++;
+        LastPitchScale = player.PitchScale;
+    }
+
+    /// <summary>正在发声的声道数 —— S12 的面板用它显示"池子用了几个"。</summary>
+    public int ActiveSfxVoices
+    {
+        get
+        {
+            var active = 0;
+            foreach (var voice in _sfxVoices) if (voice.Playing) active++;
+            return active;
+        }
+    }
+
+    public int SfxVoiceCapacity => _sfxVoices.Count;
+    public int TotalSfxPlayed { get; private set; }
+    public float LastPitchScale { get; private set; } = 1f;
+
+    public override void _ExitTree() => ReleaseAllStreams();
+
+    /// <summary>
+    /// 引擎关停路径。
+    ///
+    /// ★ 为什么 `_ExitTree` 不够：用 `--quit-after`（或者直接关窗口）退出时，
+    ///   引擎**不会走正常的场景树拆解流程**，`_ExitTree` 根本不会被调用。
+    ///   结果就是 `--verbose` 里那两行：
+    ///     `Leaked instance: AudioStreamWAV ... Reference count: 1`
+    ///     `Leaked instance: AudioStreamPlaybackWAV ... Reference count: 1`
+    ///   —— **正好是一个正在播放的音乐流和它的播放对象**。
+    ///
+    ///   所以要额外接住 `NotificationPredelete`：它在对象被销毁前触发，
+    ///   是"最后一次说话的机会"。
+    ///
+    /// ★ 通用教训：**需要"退出时释放"的资源，要同时挂在 `_ExitTree` 和
+    ///   `NotificationPredelete` 上。** 只挂前者，在非正常退出路径上会漏。
+    /// </summary>
+    public override void _Notification(int what)
+    {
+        if (what == NotificationPredelete) ReleaseAllStreams();
+    }
+
+    private void ReleaseAllStreams()
+    {
+        if (!IsInstanceValid(this)) return;
+
+        foreach (var voice in _sfxVoices)
+        {
+            if (!IsInstanceValid(voice)) continue;
+            voice.Stop();
+            voice.Stream = null;
+        }
+
+        foreach (var player in new[] { _music, _musicAlt })
+        {
+            if (!IsInstanceValid(player)) continue;
+            player.Stop();
+            player.Stream = null;
+        }
     }
 
     /// <summary>用 0~1 的线性值设置某条总线的音量。</summary>

@@ -97,7 +97,7 @@ dojo/
 | S09 | [数据驱动](docs/stations/s09-data.md) | 自定义 Resource / .tres 配置 / 热重载 | ✅ 已建成 |
 | S10 | [背包与物品](docs/stations/s10-inventory.md) | 数据与视图分离 / 拖拽 / 堆叠 / 装备 | ✅ 已建成 |
 | S11 | [存档与读档](docs/stations/s11-save.md) | JSON / 存档槽 / 版本迁移 / 损坏处理 | ✅ 已建成 |
-| S12 | 音频 | 音频总线 / SFX 池 / 交叉淡入 / 音高随机 | 待建设 |
+| S12 | [音频](docs/stations/s12-audio.md) | 音频总线 / SFX 池 / 交叉淡入 / 音高随机 | ✅ 已建成 |
 | S13 | [事件总线](docs/stations/s13-events.md) | Autoload / 全局信号 / 解耦 / 连接泄漏 | ✅ 已建成 |
 | S14 | [对象池与性能](docs/stations/s14-pooling.md) | 对象池 / 性能测量 / 节点数 / 什么时候不该池化 | ✅ 已建成 |
 | S15 | [程序化生成](docs/stations/s15-procgen.md) | 种子随机 / 噪声 / 房间生成 / TileMapLayer | ✅ 已建成 |

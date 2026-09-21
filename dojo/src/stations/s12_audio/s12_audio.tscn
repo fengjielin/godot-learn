@@ -1,0 +1,29 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s12_audio/S12Audio.cs" id="1_s12"]
+[ext_resource type="PackedScene" path="res://src/entities/player/player.tscn" id="2_player"]
+
+[node name="S12Audio" type="Node2D"]
+script = ExtResource("1_s12")
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.048, 0.055, 0.078, 1)
+polygon = PackedVector2Array(-60, -60, 1340, -60, 1340, 780, -60, 780)
+
+[node name="Floor" type="Polygon2D" parent="."]
+color = Color(0.088, 0.094, 0.12, 1)
+polygon = PackedVector2Array(40, 130, 1240, 130, 1240, 690, 40, 690)
+
+[node name="Deco" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(160, 620)
+
+[node name="Panel" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 58.0
+offset_right = 790.0
+offset_bottom = 460.0
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.87, 0.92, 0.98, 1)
+text = ""

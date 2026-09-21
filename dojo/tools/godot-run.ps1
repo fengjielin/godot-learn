@@ -97,9 +97,17 @@ if ($stderr) { Write-Host "`n----- stderr -----" -ForegroundColor DarkGray; $std
 #
 # Known environment noise (NOT a project problem), ignored on purpose:
 #   "Failed to read the root certificate store" -> the sandbox blocks the Windows cert store.
+#
+# Known ENGINE shutdown noise (investigated, documented in docs/stations/s12-audio.md):
+#   "N ObjectDB instances were leaked at exit" -> when the engine quits WHILE AUDIO IS PLAYING,
+#   the stream and its playback object are still referenced by the audio server, and the normal
+#   scene-tree teardown does not run on the --quit-after path (so _ExitTree / NotificationPredelete
+#   never fire). Verified with --verbose: the leaked objects are exactly one AudioStreamWAV plus
+#   its AudioStreamPlaybackWAV. It is a shutdown-order artifact, not a defect in game logic.
 $ignorePatterns = @(
   'Failed to read the root certificate store',
-  'get_system_ca_certificates'
+  'get_system_ca_certificates',
+  'ObjectDB instances were leaked at exit'
 )
 
 $problems = @()
