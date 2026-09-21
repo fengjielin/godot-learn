@@ -1,0 +1,42 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/hub/Portal.cs" id="1_portal"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_portal"]
+size = Vector2(58, 58)
+
+[node name="Portal" type="Area2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_portal")
+
+[node name="Pad" type="Polygon2D" parent="."]
+color = Color(0.26, 0.68, 0.95, 1)
+polygon = PackedVector2Array(-29, -29, 29, -29, 29, 29, -29, 29)
+
+[node name="Inner" type="Polygon2D" parent="."]
+color = Color(0.07, 0.09, 0.13, 1)
+polygon = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_portal")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -148.0
+offset_top = -64.0
+offset_right = 148.0
+offset_bottom = -36.0
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 16
+
+[node name="Prompt" type="Label" parent="."]
+visible = false
+offset_left = -190.0
+offset_top = 34.0
+offset_right = 190.0
+offset_bottom = 64.0
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.95, 0.96, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9)
+theme_override_constants/outline_size = 6

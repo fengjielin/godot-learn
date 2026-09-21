@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s03_physics/Bullet.cs" id="1_bullet"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bullet"]
+radius = 6.0
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 128
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_bullet")
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(1, 0.92, 0.5, 1)
+polygon = PackedVector2Array(-8, -3, 8, -3, 8, 3, -8, 3)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bullet")

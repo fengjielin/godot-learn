@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s01_lifecycle/S01Lifecycle.cs" id="1_s01"]
+
+[node name="S01Lifecycle" type="Node2D"]
+script = ExtResource("1_s01")
+
+[node name="Floor" type="Polygon2D" parent="."]
+color = Color(0.106, 0.122, 0.157, 1)
+polygon = PackedVector2Array(40, 128, 1240, 128, 1240, 688, 40, 688)
+
+[node name="SpawnPad" type="Polygon2D" parent="."]
+color = Color(0.161, 0.204, 0.278, 1)
+polygon = PackedVector2Array(280, 596, 440, 596, 440, 656, 280, 656)
+
+[node name="SpawnPadEdge" type="Polygon2D" parent="."]
+color = Color(0.33, 0.85, 0.72, 0.9)
+polygon = PackedVector2Array(280, 596, 440, 596, 440, 600, 280, 600)
+
+[node name="Deco" type="Node2D" parent="."]
+
+[node name="Spawned" type="Node2D" parent="."]

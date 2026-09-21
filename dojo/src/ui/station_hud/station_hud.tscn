@@ -1,0 +1,140 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/ui/station_hud/StationHud.cs" id="1_hud"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tasks"]
+bg_color = Color(0.066, 0.078, 0.113, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.24, 0.36, 0.54, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_done"]
+bg_color = Color(0.09, 0.24, 0.18, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.31, 0.85, 0.53, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="StationHud" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_hud")
+
+[node name="TopBar" type="ColorRect" parent="."]
+anchor_right = 1.0
+offset_bottom = 54.0
+grow_horizontal = 2
+color = Color(0.055, 0.066, 0.094, 0.94)
+
+[node name="TitleLabel" type="Label" parent="TopBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_right = -700.0
+vertical_alignment = 1
+text = "S01  节点与生命周期"
+
+[node name="SkillLabel" type="Label" parent="TopBar"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -690.0
+offset_right = -22.0
+horizontal_alignment = 2
+vertical_alignment = 1
+theme_override_colors/font_color = Color(0.6, 0.72, 0.88, 1)
+text = "场景树 / 生命周期 / 信号 / 分组"
+
+[node name="TaskPanel" type="PanelContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -486.0
+offset_top = 70.0
+offset_right = -18.0
+offset_bottom = 70.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tasks")
+
+[node name="Margin" type="MarginContainer" parent="TaskPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 14
+
+[node name="VBox" type="VBoxContainer" parent="TaskPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TasksHeader" type="Label" parent="TaskPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.85, 0.95, 1)
+text = "练习任务（TAB 收起）"
+
+[node name="TasksBody" type="Label" parent="TaskPanel/Margin/VBox"]
+layout_mode = 2
+autowrap_mode = 3
+theme_override_constants/line_spacing = 6
+text = "1. ..."
+
+[node name="CompletedPanel" type="PanelContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -62.0
+offset_right = 300.0
+offset_bottom = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_done")
+
+[node name="Label" type="Label" parent="CompletedPanel"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.82, 1, 0.88, 1)
+text = "练习完成"
+
+[node name="StatusLabel" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = -42.0
+offset_bottom = -12.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.86, 0.91, 0.98, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85)
+theme_override_constants/outline_size = 6
+text = ""
+
+[node name="HintLabel" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -620.0
+offset_top = -42.0
+offset_right = -22.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+horizontal_alignment = 2
+theme_override_colors/font_color = Color(0.66, 0.73, 0.86, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85)
+theme_override_constants/outline_size = 6
+text = "TAB 任务    R 重开    ESC 暂停菜单"

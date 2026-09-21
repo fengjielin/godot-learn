@@ -1,0 +1,31 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s13_events/S13Events.cs" id="1_s13"]
+[ext_resource type="Script" path="res://src/stations/s13_events/AchievementSystem.cs" id="2_ach"]
+[ext_resource type="PackedScene" path="res://src/entities/player/player.tscn" id="3_player"]
+
+[node name="S13Events" type="Node2D"]
+script = ExtResource("1_s13")
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.055, 0.062, 0.09, 1)
+polygon = PackedVector2Array(-60, -60, 1340, -60, 1340, 780, -60, 780)
+
+[node name="Floor" type="Polygon2D" parent="."]
+color = Color(0.09, 0.1, 0.135, 1)
+polygon = PackedVector2Array(40, 130, 1240, 130, 1240, 690, 40, 690)
+
+[node name="Pickups" type="Node2D" parent="."]
+
+[node name="Targets" type="Node2D" parent="."]
+
+[node name="Deco" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+position = Vector2(140, 620)
+
+[node name="Achievements" type="Node" parent="."]
+script = ExtResource("2_ach")
+
+[node name="ToastLayer" type="CanvasLayer" parent="."]
+layer = 8

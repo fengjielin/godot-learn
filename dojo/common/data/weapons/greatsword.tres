@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://common/data/WeaponData.cs" id="1_weapon"]
+
+[resource]
+script = ExtResource("1_weapon")
+DisplayName = "大剑"
+Description = "慢、重、范围大。单次伤害很高，但两刀之间够敌人打你一下。"
+Damage = 26
+AttackInterval = 0.78
+Windup = 0.22
+Reach = 74.0
+ArcWidth = 76.0
+Knockback = 420.0
+CritChance = 0.10
+CritMultiplier = 2.5
+TintColor = Color(1, 0.6, 0.42, 0.34)

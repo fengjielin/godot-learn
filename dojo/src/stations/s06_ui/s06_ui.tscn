@@ -1,0 +1,250 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s06_ui/S06Ui.cs" id="1_s06"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_testbox"]
+bg_color = Color(0.118, 0.137, 0.18, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.42, 0.58, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="S06Ui" type="Node2D"]
+script = ExtResource("1_s06")
+
+[node name="Ui" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Background" type="ColorRect" parent="Ui"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.055, 0.063, 0.086, 1)
+
+[node name="Columns" type="HBoxContainer" parent="Ui"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 66.0
+offset_right = -480.0
+offset_bottom = -50.0
+theme_override_constants/separation = 22
+
+[node name="Left" type="VBoxContainer" parent="Ui/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Ui/Columns/Left"]
+layout_mode = 2
+autowrap_mode = 3
+theme_override_colors/font_color = Color(0.6, 0.78, 0.95, 1)
+theme_override_font_sizes/font_size = 16
+text = "① 布局实验台　按 1 切换布局方式 · 按 3 改变盒子宽度"
+
+[node name="TestBox" type="PanelContainer" parent="Ui/Columns/Left"]
+clip_contents = true
+custom_minimum_size = Vector2(360, 250)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_testbox")
+
+[node name="ContainerContent" type="MarginContainer" parent="Ui/Columns/Left/TestBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 14
+
+[node name="VBox" type="VBoxContainer" parent="Ui/Columns/Left/TestBox/ContainerContent"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Heading" type="Label" parent="Ui/Columns/Left/TestBox/ContainerContent/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "容器布局"
+
+[node name="Body" type="Label" parent="Ui/Columns/Left/TestBox/ContainerContent/VBox"]
+layout_mode = 2
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 15
+text = "这段文字用的是自动换行（autowrap）。把盒子调窄，它会重新折行，内容永远待在盒子里面。宽高都不是写死的，是容器算出来的。"
+
+[node name="Action" type="Button" parent="Ui/Columns/Left/TestBox/ContainerContent/VBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "一个按钮"
+
+[node name="AbsoluteContent" type="Control" parent="Ui/Columns/Left/TestBox"]
+visible = false
+layout_mode = 2
+
+[node name="Heading" type="Label" parent="Ui/Columns/Left/TestBox/AbsoluteContent"]
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 330.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 17
+text = "绝对定位"
+
+[node name="Body" type="Label" parent="Ui/Columns/Left/TestBox/AbsoluteContent"]
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 330.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 15
+text = "这段文字的宽度是写死的（16 到 330）。把盒子调窄，它不会重新折行，只会被盒子切掉右边一半 —— 而且你看不到任何报错。"
+
+[node name="Action" type="Button" parent="Ui/Columns/Left/TestBox/AbsoluteContent"]
+offset_left = 16.0
+offset_top = 150.0
+offset_right = 140.0
+offset_bottom = 190.0
+text = "一个按钮"
+
+[node name="ModeLabel" type="Label" parent="Ui/Columns/Left"]
+layout_mode = 2
+autowrap_mode = 3
+theme_override_colors/font_color = Color(0.7, 0.76, 0.88, 1)
+theme_override_font_sizes/font_size = 15
+text = "当前：容器布局 · 盒子宽 360"
+
+[node name="Right" type="VBoxContainer" parent="Ui/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Ui/Columns/Right"]
+layout_mode = 2
+autowrap_mode = 3
+theme_override_colors/font_color = Color(0.6, 0.78, 0.95, 1)
+theme_override_font_sizes/font_size = 16
+text = "② 控件陈列柜　按 4 切换主题配色 · 按 2 切换窗口分辨率 · 按 5 内置动作说明"
+
+[node name="Gallery" type="PanelContainer" parent="Ui/Columns/Right"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Margin" type="MarginContainer" parent="Ui/Columns/Right/Gallery"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Ui/Columns/Right/Gallery/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="NormalButton" type="Button" parent="Ui/Columns/Right/Gallery/Margin/VBox"]
+layout_mode = 2
+text = "普通按钮"
+
+[node name="Check" type="CheckBox" parent="Ui/Columns/Right/Gallery/Margin/VBox"]
+layout_mode = 2
+button_pressed = true
+text = "复选框"
+
+[node name="Slider" type="HSlider" parent="Ui/Columns/Right/Gallery/Margin/VBox"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.62
+
+[node name="Bar" type="ProgressBar" parent="Ui/Columns/Right/Gallery/Margin/VBox"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.62
+
+[node name="Option" type="OptionButton" parent="Ui/Columns/Right/Gallery/Margin/VBox"]
+layout_mode = 2
+
+[node name="Sep" type="HSeparator" parent="Ui/Columns/Right/Gallery/Margin/VBox"]
+layout_mode = 2
+
+[node name="FocusHint" type="Label" parent="Ui/Columns/Right/Gallery/Margin/VBox"]
+layout_mode = 2
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.7, 0.76, 0.88, 1)
+text = "下面这一排是焦点导航实验台：点一下按钮，或用 TAB 把焦点移进来，然后用方向键移动、回车确认。"
+
+[node name="FocusRow" type="HBoxContainer" parent="Ui/Columns/Right/Gallery/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="FocusA" type="Button" parent="Ui/Columns/Right/Gallery/Margin/VBox/FocusRow"]
+custom_minimum_size = Vector2(92, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "按钮 A"
+
+[node name="FocusB" type="Button" parent="Ui/Columns/Right/Gallery/Margin/VBox/FocusRow"]
+custom_minimum_size = Vector2(92, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "按钮 B"
+
+[node name="FocusC" type="Button" parent="Ui/Columns/Right/Gallery/Margin/VBox/FocusRow"]
+custom_minimum_size = Vector2(92, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "按钮 C"
+
+[node name="FocusStatus" type="Label" parent="Ui/Columns/Right/Gallery/Margin/VBox"]
+layout_mode = 2
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 14
+text = "焦点：无"
+
+[node name="InfoPanel" type="PanelContainer" parent="Ui"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -330.0
+offset_top = -170.0
+offset_right = 330.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="Ui/InfoPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox" type="VBoxContainer" parent="Ui/InfoPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Ui/InfoPanel/Margin/VBox"]
+layout_mode = 2
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 20
+text = "为什么 ui_cancel 不用自己定义？"
+
+[node name="Body" type="Label" parent="Ui/InfoPanel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 15
+text = "ui_cancel / ui_accept / ui_up / ui_down / ui_left / ui_right / ui_focus_next 这些叫内置动作：每个 Godot 新工程默认就有，而且已经绑好了键盘和手柄 —— ui_cancel 同时绑了 ESC、手柄 B、以及部分手柄的 Start。
+
+自己去定义一套 ESC 动作的坏处：手柄玩不了（你必须再记得绑手柄键）、跟引擎的 UI 系统打架（控件默认就吃 ui_cancel / ui_accept）、以及改键位时要改两处。
+
+判断标准很简单：这个输入是「操作界面」的还是「操作游戏世界」的？
+操作界面 → 用内置动作；操作游戏世界 → 自己定义（比如本工程的 move_left / jump / dash）。
+
+按 5 收起。"

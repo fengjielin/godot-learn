@@ -1,0 +1,99 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s04_fsm/S04Fsm.cs" id="1_s04"]
+[ext_resource type="PackedScene" path="res://src/entities/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://src/stations/s04_fsm/guard.tscn" id="3_guard"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pillar"]
+size = Vector2(60, 150)
+
+[node name="S04Fsm" type="Node2D"]
+script = ExtResource("1_s04")
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.059, 0.071, 0.098, 1)
+polygon = PackedVector2Array(-60, -60, 1340, -60, 1340, 780, -60, 780)
+
+[node name="Floor" type="Polygon2D" parent="."]
+color = Color(0.102, 0.122, 0.161, 1)
+polygon = PackedVector2Array(40, 130, 1240, 130, 1240, 690, 40, 690)
+
+[node name="Pillar1" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Visual" type="Polygon2D" parent="Pillar1"]
+color = Color(0.275, 0.314, 0.388, 1)
+polygon = PackedVector2Array(530, 395, 590, 395, 590, 545, 530, 545)
+
+[node name="Top" type="Polygon2D" parent="Pillar1"]
+color = Color(0.44, 0.5, 0.62, 1)
+polygon = PackedVector2Array(530, 395, 590, 395, 590, 403, 530, 403)
+
+[node name="Shape" type="CollisionShape2D" parent="Pillar1"]
+position = Vector2(560, 470)
+shape = SubResource("RectangleShape2D_pillar")
+
+[node name="Pillar2" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Visual" type="Polygon2D" parent="Pillar2"]
+color = Color(0.275, 0.314, 0.388, 1)
+polygon = PackedVector2Array(670, 355, 730, 355, 730, 505, 670, 505)
+
+[node name="Top" type="Polygon2D" parent="Pillar2"]
+color = Color(0.44, 0.5, 0.62, 1)
+polygon = PackedVector2Array(670, 355, 730, 355, 730, 363, 670, 363)
+
+[node name="Shape" type="CollisionShape2D" parent="Pillar2"]
+position = Vector2(700, 430)
+shape = SubResource("RectangleShape2D_pillar")
+
+[node name="Pillar3" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Visual" type="Polygon2D" parent="Pillar3"]
+color = Color(0.275, 0.314, 0.388, 1)
+polygon = PackedVector2Array(220, 355, 280, 355, 280, 505, 220, 505)
+
+[node name="Top" type="Polygon2D" parent="Pillar3"]
+color = Color(0.44, 0.5, 0.62, 1)
+polygon = PackedVector2Array(220, 355, 280, 355, 280, 363, 220, 363)
+
+[node name="Shape" type="CollisionShape2D" parent="Pillar3"]
+position = Vector2(250, 430)
+shape = SubResource("RectangleShape2D_pillar")
+
+[node name="Waypoints" type="Node2D" parent="."]
+
+[node name="Waypoint1" type="Polygon2D" parent="Waypoints"]
+position = Vector2(380, 300)
+color = Color(0.3, 0.44, 0.36, 0.9)
+polygon = PackedVector2Array(0, -16, 16, 0, 0, 16, -16, 0)
+
+[node name="Waypoint2" type="Polygon2D" parent="Waypoints"]
+position = Vector2(900, 300)
+color = Color(0.3, 0.44, 0.36, 0.9)
+polygon = PackedVector2Array(0, -16, 16, 0, 0, 16, -16, 0)
+
+[node name="Waypoint3" type="Polygon2D" parent="Waypoints"]
+position = Vector2(900, 600)
+color = Color(0.3, 0.44, 0.36, 0.9)
+polygon = PackedVector2Array(0, -16, 16, 0, 0, 16, -16, 0)
+
+[node name="Waypoint4" type="Polygon2D" parent="Waypoints"]
+position = Vector2(380, 600)
+color = Color(0.3, 0.44, 0.36, 0.9)
+polygon = PackedVector2Array(0, -16, 16, 0, 0, 16, -16, 0)
+
+[node name="Deco" type="Node2D" parent="."]
+
+[node name="Thrown" type="Node2D" parent="."]
+
+[node name="Guard" parent="." instance=ExtResource("3_guard")]
+position = Vector2(900, 300)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(300, 640)

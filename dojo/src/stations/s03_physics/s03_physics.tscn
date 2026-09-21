@@ -1,0 +1,113 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s03_physics/S03Physics.cs" id="1_s03"]
+[ext_resource type="PackedScene" path="res://src/entities/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://src/stations/s03_physics/target.tscn" id="3_target"]
+[ext_resource type="PackedScene" path="res://src/stations/s03_physics/push_box.tscn" id="4_box"]
+[ext_resource type="PackedScene" path="res://src/stations/s03_physics/turret.tscn" id="5_turret"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
+size = Vector2(40, 190)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cover"]
+size = Vector2(48, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hazard"]
+size = Vector2(400, 180)
+
+[node name="S03Physics" type="Node2D"]
+script = ExtResource("1_s03")
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.075, 0.086, 0.114, 1)
+polygon = PackedVector2Array(-40, -40, 1320, -40, 1320, 760, -40, 760)
+
+[node name="RegionA" type="Polygon2D" parent="."]
+color = Color(0.118, 0.137, 0.176, 1)
+polygon = PackedVector2Array(40, 130, 620, 130, 620, 410, 40, 410)
+
+[node name="RegionB" type="Polygon2D" parent="."]
+color = Color(0.137, 0.129, 0.157, 1)
+polygon = PackedVector2Array(660, 130, 1240, 130, 1240, 410, 660, 410)
+
+[node name="RegionC" type="Polygon2D" parent="."]
+color = Color(0.11, 0.14, 0.153, 1)
+polygon = PackedVector2Array(40, 420, 620, 420, 620, 700, 40, 700)
+
+[node name="RegionD" type="Polygon2D" parent="."]
+color = Color(0.161, 0.11, 0.129, 1)
+polygon = PackedVector2Array(660, 420, 1240, 420, 1240, 700, 660, 700)
+
+[node name="WallA" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Visual" type="Polygon2D" parent="WallA"]
+color = Color(0.286, 0.325, 0.4, 1)
+polygon = PackedVector2Array(300, 205, 340, 205, 340, 395, 300, 395)
+
+[node name="Shape" type="CollisionShape2D" parent="WallA"]
+position = Vector2(320, 300)
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="CoverC" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Visual" type="Polygon2D" parent="CoverC"]
+color = Color(0.286, 0.325, 0.4, 1)
+polygon = PackedVector2Array(306, 520, 354, 520, 354, 660, 306, 660)
+
+[node name="Shape" type="CollisionShape2D" parent="CoverC"]
+position = Vector2(330, 590)
+shape = SubResource("RectangleShape2D_cover")
+
+[node name="TargetA" parent="." instance=ExtResource("3_target")]
+position = Vector2(520, 300)
+
+[node name="TargetB" parent="." instance=ExtResource("3_target")]
+position = Vector2(520, 152)
+
+[node name="PushPad" type="Polygon2D" parent="."]
+color = Color(0.24, 0.3, 0.24, 1)
+polygon = PackedVector2Array(1090, 250, 1190, 250, 1190, 350, 1090, 350)
+
+[node name="PushPadEdge" type="Polygon2D" parent="."]
+color = Color(0.36, 0.85, 0.55, 0.9)
+polygon = PackedVector2Array(1090, 250, 1190, 250, 1190, 256, 1090, 256)
+
+[node name="PushBox" parent="." instance=ExtResource("4_box")]
+position = Vector2(780, 300)
+
+[node name="Turret" parent="." instance=ExtResource("5_turret")]
+position = Vector2(330, 452)
+
+[node name="Hazard" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2
+
+[node name="Visual" type="Polygon2D" parent="Hazard"]
+color = Color(0.4, 0.18, 0.22, 1)
+polygon = PackedVector2Array(700, 480, 1100, 480, 1100, 660, 700, 660)
+
+[node name="Shape" type="CollisionShape2D" parent="Hazard"]
+position = Vector2(900, 570)
+shape = SubResource("RectangleShape2D_hazard")
+
+[node name="HealPad" type="Polygon2D" parent="."]
+color = Color(0.2, 0.36, 0.3, 1)
+polygon = PackedVector2Array(1134, 424, 1226, 424, 1226, 516, 1134, 516)
+
+[node name="HealPadMark" type="Polygon2D" parent="."]
+color = Color(0.4, 0.9, 0.62, 0.9)
+polygon = PackedVector2Array(1156, 462, 1204, 462, 1204, 478, 1156, 478)
+
+[node name="HealPadMark2" type="Polygon2D" parent="."]
+color = Color(0.4, 0.9, 0.62, 0.9)
+polygon = PackedVector2Array(1172, 446, 1188, 446, 1188, 494, 1172, 494)
+
+[node name="Deco" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(110, 300)
+PushSpeed = 180.0

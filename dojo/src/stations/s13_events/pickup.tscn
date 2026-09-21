@@ -1,0 +1,23 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s13_events/Pickup.cs" id="1_pickup"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pickup"]
+radius = 22.0
+
+[node name="Pickup" type="Area2D"]
+collision_layer = 64
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_pickup")
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(1, 0.86, 0.36, 1)
+polygon = PackedVector2Array(0, -13, 12, 0, 0, 13, -12, 0)
+
+[node name="Shine" type="Polygon2D" parent="."]
+color = Color(1, 0.97, 0.78, 0.85)
+polygon = PackedVector2Array(0, -6, 5, 0, 0, 6, -5, 0)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pickup")

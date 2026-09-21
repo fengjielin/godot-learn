@@ -1,0 +1,23 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s02_input/PlatformerPlayer.cs" id="1_pp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pp"]
+size = Vector2(24, 28)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_pp")
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(0.35, 0.83, 0.95, 1)
+polygon = PackedVector2Array(-12, -14, 12, -14, 12, -4, 12, 14, -12, 14)
+
+[node name="Eye" type="Polygon2D" parent="."]
+position = Vector2(5, -5)
+color = Color(0.06, 0.1, 0.14, 1)
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pp")

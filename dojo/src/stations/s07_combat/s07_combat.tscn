@@ -1,0 +1,34 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s07_combat/S07Combat.cs" id="1_s07"]
+[ext_resource type="PackedScene" path="res://src/entities/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://src/stations/s07_combat/combat_dummy.tscn" id="3_dummy"]
+
+[node name="S07Combat" type="Node2D"]
+script = ExtResource("1_s07")
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.059, 0.071, 0.098, 1)
+polygon = PackedVector2Array(-60, -60, 1340, -60, 1340, 780, -60, 780)
+
+[node name="Floor" type="Polygon2D" parent="."]
+color = Color(0.114, 0.106, 0.137, 1)
+polygon = PackedVector2Array(40, 130, 1240, 130, 1240, 690, 40, 690)
+
+[node name="Dummy1" parent="." instance=ExtResource("3_dummy")]
+position = Vector2(700, 240)
+
+[node name="Dummy2" parent="." instance=ExtResource("3_dummy")]
+position = Vector2(950, 390)
+
+[node name="Dummy3" parent="." instance=ExtResource("3_dummy")]
+position = Vector2(700, 540)
+
+[node name="Swings" type="Node2D" parent="."]
+
+[node name="Numbers" type="Node2D" parent="."]
+
+[node name="Deco" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(200, 380)

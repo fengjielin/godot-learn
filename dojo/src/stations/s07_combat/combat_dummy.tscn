@@ -1,0 +1,55 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s07_combat/CombatDummy.cs" id="1_dummy"]
+[ext_resource type="Script" path="res://common/combat/Damageable.cs" id="2_dmg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dummy"]
+size = Vector2(40, 46)
+
+[node name="CombatDummy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1_dummy")
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(0.42, 0.34, 0.42, 1)
+polygon = PackedVector2Array(-20, -23, 20, -23, 20, 23, -20, 23)
+
+[node name="Visor" type="Polygon2D" parent="."]
+color = Color(1, 0.86, 0.72, 1)
+polygon = PackedVector2Array(-12, -16, 12, -16, 12, -6, -12, -6)
+
+[node name="Core" type="Polygon2D" parent="."]
+color = Color(0.24, 0.18, 0.24, 1)
+polygon = PackedVector2Array(-8, 2, 8, 2, 8, 14, -8, 14)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dummy")
+
+[node name="Bars" type="Node2D" parent="."]
+
+[node name="ShieldBg" type="Polygon2D" parent="Bars"]
+position = Vector2(-34, -62)
+color = Color(0.14, 0.16, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 68, 0, 68, 5, 0, 5)
+
+[node name="ShieldFill" type="Polygon2D" parent="Bars"]
+position = Vector2(-34, -62)
+color = Color(0.38, 0.7, 1, 1)
+polygon = PackedVector2Array(0, 0, 68, 0, 68, 5, 0, 5)
+
+[node name="HpBg" type="Polygon2D" parent="Bars"]
+position = Vector2(-34, -52)
+color = Color(0.14, 0.16, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 68, 0, 68, 7, 0, 7)
+
+[node name="HpFill" type="Polygon2D" parent="Bars"]
+position = Vector2(-34, -52)
+color = Color(0.9, 0.34, 0.4, 1)
+polygon = PackedVector2Array(0, 0, 68, 0, 68, 7, 0, 7)
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("2_dmg")
+MaxHp = 100
+MaxShield = 30
+InvulnerableSeconds = 0.5

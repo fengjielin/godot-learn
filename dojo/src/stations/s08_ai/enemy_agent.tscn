@@ -1,0 +1,52 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s08_ai/EnemyAgent.cs" id="1_agent"]
+[ext_resource type="Script" path="res://common/state_machine/StateMachine.cs" id="2_sm"]
+[ext_resource type="Script" path="res://src/stations/s08_ai/states/EnemyPatrolState.cs" id="3_patrol"]
+[ext_resource type="Script" path="res://src/stations/s08_ai/states/EnemyChaseState.cs" id="4_chase"]
+[ext_resource type="Script" path="res://src/stations/s08_ai/states/EnemySearchState.cs" id="5_search"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_agent"]
+size = Vector2(30, 36)
+
+[node name="EnemyAgent" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1_agent")
+
+[node name="VisionCone" type="Polygon2D" parent="."]
+color = Color(0.6, 0.75, 1, 0.09)
+polygon = PackedVector2Array(0, 0, 330, 0, 0, 0)
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(0.42, 0.6, 0.86, 1)
+polygon = PackedVector2Array(-15, -18, 15, -18, 15, 18, -15, 18)
+
+[node name="Visor" type="Polygon2D" parent="."]
+position = Vector2(11, 0)
+color = Color(0.8, 0.9, 1, 1)
+polygon = PackedVector2Array(-4, -5, 4, -5, 4, 5, -4, 5)
+
+[node name="Sight" type="RayCast2D" parent="."]
+enabled = false
+collision_mask = 1
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_agent")
+
+[node name="Nav" type="NavigationAgent2D" parent="."]
+radius = 18.0
+path_desired_distance = 6.0
+target_desired_distance = 14.0
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_sm")
+
+[node name="Patrol" type="Node" parent="StateMachine"]
+script = ExtResource("3_patrol")
+
+[node name="Chase" type="Node" parent="StateMachine"]
+script = ExtResource("4_chase")
+
+[node name="Search" type="Node" parent="StateMachine"]
+script = ExtResource("5_search")

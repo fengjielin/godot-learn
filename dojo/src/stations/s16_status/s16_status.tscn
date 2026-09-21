@@ -1,0 +1,25 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s16_status/S16Status.cs" id="1_s16"]
+[ext_resource type="PackedScene" path="res://src/entities/player/player.tscn" id="2_player"]
+
+[node name="S16Status" type="Node2D"]
+script = ExtResource("1_s16")
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.055, 0.067, 0.094, 1)
+polygon = PackedVector2Array(-60, -60, 1340, -60, 1340, 780, -60, 780)
+
+[node name="Floor" type="Polygon2D" parent="."]
+color = Color(0.09, 0.106, 0.137, 1)
+polygon = PackedVector2Array(40, 130, 1240, 130, 1240, 690, 40, 690)
+
+[node name="Pads" type="Node2D" parent="."]
+
+[node name="Deco" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(140, 620)
+
+[node name="IconLayer" type="CanvasLayer" parent="."]
+layer = 6

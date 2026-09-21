@@ -1,0 +1,22 @@
+# --- Godot 4 ---
+.godot/
+/android/
+*.translation
+
+# --- .NET ---
+bin/
+obj/
+*.user
+.vs/
+.idea/
+
+# --- 本工程的验证/运行产物 ---
+.logs/
+/logs/
+
+# --- 导出产物 ---
+# 注意：export_presets.cfg 不忽略 —— 导出预设是项目配置的一部分，应该提交。
+/build/
+/export/
+*.pck
+*.exe

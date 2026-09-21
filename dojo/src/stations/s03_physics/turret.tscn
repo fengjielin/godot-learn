@@ -1,0 +1,27 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s03_physics/Turret.cs" id="1_turret"]
+
+[node name="Turret" type="Node2D"]
+script = ExtResource("1_turret")
+
+[node name="Base" type="Polygon2D" parent="."]
+color = Color(0.24, 0.28, 0.36, 1)
+polygon = PackedVector2Array(-26, -18, 26, -18, 26, 18, -26, 18)
+
+[node name="Dome" type="Polygon2D" parent="."]
+color = Color(0.34, 0.85, 0.55, 1)
+polygon = PackedVector2Array(-20, -13, 20, -13, 20, 13, -20, 13)
+
+[node name="Core" type="Polygon2D" parent="."]
+color = Color(0.09, 0.11, 0.15, 1)
+polygon = PackedVector2Array(-9, -6, 9, -6, 9, 6, -9, 6)
+
+[node name="Ray" type="RayCast2D" parent="."]
+enabled = false
+collision_mask = 1
+
+[node name="Beam" type="Line2D" parent="."]
+width = 3.0
+default_color = Color(0.34, 0.85, 0.55, 1)
+points = PackedVector2Array(0, 0, 0, 0)

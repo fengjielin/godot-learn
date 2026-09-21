@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s14_pooling/S14Pooling.cs" id="1_s14"]
+
+[node name="S14Pooling" type="Node2D"]
+script = ExtResource("1_s14")
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.047, 0.055, 0.078, 1)
+polygon = PackedVector2Array(-60, -60, 1340, -60, 1340, 780, -60, 780)
+
+[node name="Floor" type="Polygon2D" parent="."]
+color = Color(0.082, 0.094, 0.125, 1)
+polygon = PackedVector2Array(40, 130, 1240, 130, 1240, 690, 40, 690)
+
+[node name="Bullets" type="Node2D" parent="."]
+
+[node name="Deco" type="Node2D" parent="."]

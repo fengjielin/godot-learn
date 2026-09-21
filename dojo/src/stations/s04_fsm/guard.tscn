@@ -1,0 +1,78 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s04_fsm/Guard.cs" id="1_guard"]
+[ext_resource type="Script" path="res://common/state_machine/StateMachine.cs" id="2_sm"]
+[ext_resource type="Script" path="res://src/stations/s04_fsm/states/GuardPatrolState.cs" id="3_patrol"]
+[ext_resource type="Script" path="res://src/stations/s04_fsm/states/GuardAlertState.cs" id="4_alert"]
+[ext_resource type="Script" path="res://src/stations/s04_fsm/states/GuardChaseState.cs" id="5_chase"]
+[ext_resource type="Script" path="res://src/stations/s04_fsm/states/GuardAttackState.cs" id="6_attack"]
+[ext_resource type="Script" path="res://src/stations/s04_fsm/states/GuardStunState.cs" id="7_stun"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_guard"]
+size = Vector2(34, 40)
+
+[node name="Guard" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1_guard")
+
+[node name="Telegraph" type="Polygon2D" parent="."]
+visible = false
+color = Color(1, 0.35, 0.3, 0.25)
+polygon = PackedVector2Array(46, 0, 42.5, 17.6, 32.5, 32.5, 17.6, 42.5, 0, 46, -17.6, 42.5, -32.5, 32.5, -42.5, 17.6, -46, 0, -42.5, -17.6, -32.5, -32.5, -17.6, -42.5, 0, -46, 17.6, -42.5, 32.5, -32.5, 42.5, -17.6)
+
+[node name="SightLine" type="Line2D" parent="."]
+width = 2.0
+default_color = Color(1, 0.85, 0.4, 0.55)
+points = PackedVector2Array(0, 0, 0, 0)
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(0.34, 0.72, 0.45, 1)
+polygon = PackedVector2Array(-17, -20, 17, -20, 17, 20, -17, 20)
+
+[node name="Helmet" type="Polygon2D" parent="."]
+color = Color(0.2, 0.24, 0.3, 1)
+polygon = PackedVector2Array(-17, -20, 17, -20, 17, -11, -17, -11)
+
+[node name="Visor" type="Polygon2D" parent="."]
+position = Vector2(11, 0)
+color = Color(0.72, 0.92, 0.8, 1)
+polygon = PackedVector2Array(-4, -6, 4, -6, 4, 6, -4, 6)
+
+[node name="Marker" type="Label" parent="."]
+offset_left = -60.0
+offset_top = -78.0
+offset_right = 60.0
+offset_bottom = -42.0
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 30
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9)
+theme_override_constants/outline_size = 8
+text = ""
+
+[node name="Sight" type="RayCast2D" parent="."]
+enabled = false
+collision_mask = 1
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_guard")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_sm")
+
+[node name="Patrol" type="Node" parent="StateMachine"]
+script = ExtResource("3_patrol")
+
+[node name="Alert" type="Node" parent="StateMachine"]
+script = ExtResource("4_alert")
+
+[node name="Chase" type="Node" parent="StateMachine"]
+script = ExtResource("5_chase")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("6_attack")
+
+[node name="Stun" type="Node" parent="StateMachine"]
+script = ExtResource("7_stun")

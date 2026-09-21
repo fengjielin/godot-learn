@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://common/data/WeaponData.cs" id="1_weapon"]
+
+[resource]
+script = ExtResource("1_weapon")
+DisplayName = "匕首"
+Description = "快、轻、范围小。单次伤害低，靠频率取胜。"
+Damage = 6
+AttackInterval = 0.18
+Windup = 0.04
+Reach = 40.0
+ArcWidth = 34.0
+Knockback = 110.0
+CritChance = 0.25
+CritMultiplier = 2.0
+TintColor = Color(0.68, 0.95, 1, 0.32)

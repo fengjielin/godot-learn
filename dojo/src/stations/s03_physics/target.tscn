@@ -1,0 +1,23 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s03_physics/Target.cs" id="1_target"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_target"]
+size = Vector2(46, 46)
+
+[node name="Target" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_target")
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(0.82, 0.33, 0.4, 1)
+polygon = PackedVector2Array(-23, -23, 23, -23, 23, 23, -23, 23)
+
+[node name="Core" type="Polygon2D" parent="."]
+color = Color(0.22, 0.11, 0.14, 1)
+polygon = PackedVector2Array(-11, -11, 11, -11, 11, 11, -11, 11)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_target")

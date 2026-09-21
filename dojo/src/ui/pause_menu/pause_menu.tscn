@@ -1,0 +1,169 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/ui/pause_menu/PauseMenu.cs" id="1_pause"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 100
+visible = false
+script = ExtResource("1_pause")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.02, 0.024, 0.035, 0.74)
+
+[node name="Root" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Stack" type="VBoxContainer" parent="Root"]
+layout_mode = 2
+
+[node name="MainPanel" type="PanelContainer" parent="Root/Stack"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Root/Stack/MainPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 26
+theme_override_constants/margin_bottom = 22
+
+[node name="VBox" type="VBoxContainer" parent="Root/Stack/MainPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Root/Stack/MainPanel/Margin/VBox"]
+layout_mode = 2
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+text = "已暂停"
+
+[node name="Sub" type="Label" parent="Root/Stack/MainPanel/Margin/VBox"]
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.62, 0.68, 0.8, 1)
+text = "时间被冻结了：GetTree().Paused = true"
+
+[node name="Sep1" type="HSeparator" parent="Root/Stack/MainPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="Root/Stack/MainPanel/Margin/VBox"]
+layout_mode = 2
+text = "继续游戏"
+
+[node name="SettingsButton" type="Button" parent="Root/Stack/MainPanel/Margin/VBox"]
+layout_mode = 2
+text = "设置"
+
+[node name="HubButton" type="Button" parent="Root/Stack/MainPanel/Margin/VBox"]
+layout_mode = 2
+text = "返回枢纽"
+
+[node name="SettingsPanel" type="PanelContainer" parent="Root/Stack"]
+visible = false
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Root/Stack/SettingsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 26
+theme_override_constants/margin_bottom = 22
+
+[node name="VBox" type="VBoxContainer" parent="Root/Stack/SettingsPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Root/Stack/SettingsPanel/Margin/VBox"]
+layout_mode = 2
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 22
+text = "设置"
+
+[node name="Sub" type="Label" parent="Root/Stack/SettingsPanel/Margin/VBox"]
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.62, 0.68, 0.8, 1)
+text = "改完立刻生效，并且会写进 user:// 的存档里"
+
+[node name="Sep1" type="HSeparator" parent="Root/Stack/SettingsPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="Grid" type="GridContainer" parent="Root/Stack/SettingsPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="MasterLabel" type="Label" parent="Root/Stack/SettingsPanel/Margin/VBox/Grid"]
+layout_mode = 2
+text = "主音量"
+
+[node name="MasterSlider" type="HSlider" parent="Root/Stack/SettingsPanel/Margin/VBox/Grid"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.8
+
+[node name="MusicLabel" type="Label" parent="Root/Stack/SettingsPanel/Margin/VBox/Grid"]
+layout_mode = 2
+text = "音乐"
+
+[node name="MusicSlider" type="HSlider" parent="Root/Stack/SettingsPanel/Margin/VBox/Grid"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.8
+
+[node name="SfxLabel" type="Label" parent="Root/Stack/SettingsPanel/Margin/VBox/Grid"]
+layout_mode = 2
+text = "音效"
+
+[node name="SfxSlider" type="HSlider" parent="Root/Stack/SettingsPanel/Margin/VBox/Grid"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.8
+
+[node name="FullscreenCheck" type="CheckBox" parent="Root/Stack/SettingsPanel/Margin/VBox"]
+layout_mode = 2
+text = "全屏"
+
+[node name="Sep2" type="HSeparator" parent="Root/Stack/SettingsPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="ThemeButton" type="Button" parent="Root/Stack/SettingsPanel/Margin/VBox"]
+layout_mode = 2
+text = "切换主题配色"
+
+[node name="ResetButton" type="Button" parent="Root/Stack/SettingsPanel/Margin/VBox"]
+layout_mode = 2
+text = "恢复默认设置"
+
+[node name="BackButton" type="Button" parent="Root/Stack/SettingsPanel/Margin/VBox"]
+layout_mode = 2
+text = "返回"
+
+[node name="HintLabel" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -44.0
+offset_bottom = -14.0
+grow_vertical = 0
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.66, 0.73, 0.86, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85)
+theme_override_constants/outline_size = 6
+text = "↑↓ 或 TAB 移动焦点    Enter / 空格 确认    鼠标也能点    ESC 关闭"

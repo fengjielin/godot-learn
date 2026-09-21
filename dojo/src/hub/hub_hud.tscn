@@ -1,0 +1,65 @@
+[gd_scene format=3]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_status"]
+bg_color = Color(0.07, 0.08, 0.12, 0.72)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="HubHud" type="CanvasLayer"]
+layer = 10
+
+[node name="TopBar" type="ColorRect" parent="."]
+anchor_right = 1.0
+offset_bottom = 56.0
+grow_horizontal = 2
+color = Color(0.055, 0.066, 0.094, 0.94)
+
+[node name="TitleLabel" type="Label" parent="TopBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_right = -520.0
+vertical_alignment = 1
+text = "Godot 练功房    ·    走上传送门按 E 进入练习站"
+
+[node name="ProgressLabel" type="Label" parent="TopBar"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_right = -22.0
+horizontal_alignment = 2
+vertical_alignment = 1
+theme_override_colors/font_color = Color(0.62, 0.85, 0.78, 1)
+text = "练习站 1/16 已建成    已通关 0/16"
+
+[node name="StatusLabel" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = -42.0
+offset_bottom = -10.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.80, 0.86, 0.95, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85)
+theme_override_constants/outline_size = 6
+text = "从 S01 开始"
+
+[node name="HintLabel" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -700.0
+offset_top = -42.0
+offset_right = -22.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+horizontal_alignment = 2
+theme_override_colors/font_color = Color(0.66, 0.73, 0.86, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85)
+theme_override_constants/outline_size = 6
+text = "WASD / 方向键 移动     E 进入     F3 性能面板"

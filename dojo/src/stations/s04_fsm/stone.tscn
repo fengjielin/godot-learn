@@ -1,0 +1,23 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s04_fsm/Stone.cs" id="1_stone"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_stone"]
+radius = 7.0
+
+[node name="Stone" type="Area2D"]
+collision_layer = 128
+collision_mask = 5
+monitorable = false
+script = ExtResource("1_stone")
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(0.72, 0.68, 0.6, 1)
+polygon = PackedVector2Array(-7, -7, 4, -7, 7, -2, 6, 6, -3, 7, -7, 2)
+
+[node name="Crack" type="Polygon2D" parent="."]
+color = Color(0.5, 0.46, 0.4, 1)
+polygon = PackedVector2Array(-4, -3, 1, -1, -2, 3, -3, 1)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_stone")
