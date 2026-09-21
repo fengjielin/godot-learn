@@ -79,6 +79,13 @@ tools/           验证脚本（纯 ASCII）
 `CheckGoals()` 里 `MarkTaskDone(i)` 的下标**一一对应**。两处改一处就要核另一处 ——
 本工程在 S16 和 S14 都因为下标错位把勾打到了隔壁任务上。
 
+**输入动作只有 `aux_1`~`aux_5`**（由 `tools/gen-inputmap.ps1` 统一生成）。
+**用了不存在的动作名（如 `aux_6`）会在每次按键时真的报错**，headless 验证直接 FAIL ——
+本工程在 S11 踩过。要加新动作，先改 `gen-inputmap.ps1` 重新生成，别手写 InputEvent。
+
+**提交约定**：每完成一个练习站（里程碑）就提交一次本地 git，**不推送**。
+提交信息用 Conventional Commits（主题 + 正文），正文分点列出该站做了什么。
+
 ## 命名规范
 
 | 类型 | 规范 | 示例 |

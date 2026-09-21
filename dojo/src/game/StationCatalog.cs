@@ -190,7 +190,7 @@ public static class StationCatalog
                 "把游戏设置（音量、全屏）也存进去",
                 "找到 user:// 的真实路径，用记事本打开看看",
             },
-            Implemented: false),
+            Implemented: true),
 
         new(
             Id: "s12_audio",
