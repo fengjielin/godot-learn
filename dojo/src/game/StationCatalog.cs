@@ -174,7 +174,7 @@ public static class StationCatalog
                 "加右键使用物品：药水回血",
                 "思考：为什么不该把「图标节点」本身当作数据？",
             },
-            Implemented: false),
+            Implemented: true),
 
         new(
             Id: "s11_save",
