@@ -1,21 +1,21 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://lbbhp6df6qqa"]
 
-[ext_resource type="Script" path="res://src/hub/Hub.cs" id="1_hub"]
+[ext_resource type="Script" uid="uid://43fqr7etnwus" path="res://src/hub/Hub.cs" id="1_hub"]
 [ext_resource type="PackedScene" path="res://src/entities/player/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://src/hub/hub_hud.tscn" id="3_hud"]
 
-[node name="Hub" type="Node2D"]
+[node name="Hub" type="Node2D" unique_id=1954976673]
 script = ExtResource("1_hub")
 
-[node name="Background" type="Polygon2D" parent="."]
+[node name="Background" type="Polygon2D" parent="." unique_id=1606681232]
 color = Color(0.075, 0.086, 0.114, 1)
 polygon = PackedVector2Array(-64, -64, 1344, -64, 1344, 784, -64, 784)
 
-[node name="Grid" type="Node2D" parent="."]
+[node name="Grid" type="Node2D" parent="." unique_id=514521660]
 
-[node name="Portals" type="Node2D" parent="."]
+[node name="Portals" type="Node2D" parent="." unique_id=1428171210]
 
-[node name="Player" parent="." instance=ExtResource("2_player")]
+[node name="Player" parent="." unique_id=714367022 instance=ExtResource("2_player")]
 position = Vector2(640, 650)
 
-[node name="HubHud" parent="." instance=ExtResource("3_hud")]
+[node name="HubHud" parent="." unique_id=2060876953 instance=ExtResource("3_hud")]
