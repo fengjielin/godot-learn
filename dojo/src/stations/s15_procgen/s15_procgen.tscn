@@ -1,0 +1,24 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/stations/s15_procgen/S15Procgen.cs" id="1_s15"]
+[ext_resource type="PackedScene" path="res://src/entities/player/player.tscn" id="2_player"]
+
+[node name="S15Procgen" type="Node2D"]
+script = ExtResource("1_s15")
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.043, 0.05, 0.07, 1)
+polygon = PackedVector2Array(-60, -60, 1340, -60, 1340, 780, -60, 780)
+
+[node name="Floor" type="Polygon2D" parent="."]
+color = Color(0.075, 0.086, 0.11, 1)
+polygon = PackedVector2Array(60, 140, 1250, 140, 1250, 730, 60, 730)
+
+[node name="Tiles" type="Node2D" parent="."]
+
+[node name="NavRegion" type="NavigationRegion2D" parent="."]
+
+[node name="Overlay" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(120, 200)

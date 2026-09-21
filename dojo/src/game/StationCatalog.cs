@@ -254,7 +254,7 @@ public static class StationCatalog
                 "用 TileMapLayer 把生成结果画出来",
                 "加生成耗时统计，思考怎么把 100ms 降到 10ms",
             },
-            Implemented: false),
+            Implemented: true),
 
         new(
             Id: "s16_status",

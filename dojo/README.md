@@ -100,7 +100,7 @@ dojo/
 | S12 | 音频 | 音频总线 / SFX 池 / 交叉淡入 / 音高随机 | 待建设 |
 | S13 | [事件总线](docs/stations/s13-events.md) | Autoload / 全局信号 / 解耦 / 连接泄漏 | ✅ 已建成 |
 | S14 | [对象池与性能](docs/stations/s14-pooling.md) | 对象池 / 性能测量 / 节点数 / 什么时候不该池化 | ✅ 已建成 |
-| S15 | 程序化生成 | 种子随机 / 噪声 / 房间生成 / TileMapLayer | 待建设 |
+| S15 | [程序化生成](docs/stations/s15-procgen.md) | 种子随机 / 噪声 / 房间生成 / TileMapLayer | ✅ 已建成 |
 | S16 | [状态效果](docs/stations/s16-status.md) | Buff/Debuff / 叠加与刷新 / 持续伤害 / Tween | ✅ 已建成 |
 
 枢纽右上角实时显示「已建成 / 已通关」，进度存在
